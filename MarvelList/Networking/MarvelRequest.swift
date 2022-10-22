@@ -9,7 +9,7 @@ import CryptoKit
 import Foundation
 
 enum MarvelRequest {
-    case characters
+    case characters(offset: Int)
     case comics
 }
 
@@ -45,8 +45,8 @@ extension MarvelRequest: Request {
     var parameters: [String: String]? {
         var parameters = defaultParameters
         switch self {
-        case .characters:
-            break
+        case let .characters(offset):
+            parameters["offset"] = offset.description
         case .comics:
             break
         }

@@ -7,18 +7,31 @@
 
 import SwiftUI
 
-import Combine // for now
-
 struct ContentView: View {
 
-    @ObservedObject private var viewModel = ContentViewModel()
+    @StateObject private var viewModel: ContentViewModel
+
+    init(viewModel: ContentViewModel = ContentViewModel()) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
 
     var body: some View {
-        Text("Hello, world!")
-            .padding()
-            .task {
-                viewModel.test()
+        ScrollView {
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 120), alignment: .top)]) {
+                ForEach(viewModel.superheroViewModels, id: \.name) { viewModel in
+                    SuperheroView(viewModel: viewModel)
+                        .onAppear {
+                            if self.viewModel.shouldGetMoreSuperheroes(currentViewModel: viewModel) {
+                                self.viewModel.updateSuperheroes()
+                            }
+                        }
+                }
             }
+        }
+        .padding([.leading, .trailing], 8)
+        .onAppear {
+            viewModel.updateSuperheroes()
+        }
     }
 }
 
@@ -26,26 +39,4 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
-}
-
-final class ContentViewModel: ObservableObject {
-
-    private var cancellables: Set<AnyCancellable> = []
-
-    init() {
-
-    }
-
-    func test() {
-        NetworkService()
-            .request(with: MarvelRequest.characters)
-            .sink(receiveCompletion: { (error: Subscribers.Completion<NetworkServiceError>) in
-                print(error)
-            }, receiveValue: { (superheroes: SuperheroDataDto) in
-                let test = superheroes.superheroes.map { $0.toDomain() }
-                dump(test)
-            })
-            .store(in: &cancellables)
-    }
-
 }

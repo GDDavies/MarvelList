@@ -9,12 +9,16 @@ import Foundation
 import Combine
 
 protocol NetworkServiceProtocol {
-
+    func request<T: Decodable>(with request: Request) -> AnyPublisher<T, NetworkServiceError>
 }
 
 enum NetworkServiceError: Error {
     case invalidURL
     case unableToDecodeData
+
+    var localizedDescription: String {
+        "Unknown Error"
+    }
 }
 
 final class NetworkService: NetworkServiceProtocol {
