@@ -32,7 +32,6 @@ final class NetworkService: NetworkServiceProtocol {
             .map(\.data)
             .decode(type: T.self, decoder: JSONDecoder())
             .mapError { _ in NetworkServiceError.unableToDecodeData }
-            .receive(on: RunLoop.main)
             .eraseToAnyPublisher()
     }
 

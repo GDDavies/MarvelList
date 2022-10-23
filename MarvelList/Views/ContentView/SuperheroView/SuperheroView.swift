@@ -24,7 +24,7 @@ struct SuperheroView: View {
                 Image("placeholder")
             }
             .frame(width: 128, height: 128)
-            .clipShape(RoundedRectangle(cornerRadius: 25))
+            .clipShape(RoundedRectangle(cornerRadius: 24))
 
             Text(viewModel.name)
                 .multilineTextAlignment(.center)
@@ -36,6 +36,7 @@ struct SuperheroView_Previews: PreviewProvider {
     static var previews: some View {
         SuperheroView(
             viewModel: SuperheroViewModel(
+                id: 0,
                 imageURL: nil,
                 name: "Spiderman"
             )

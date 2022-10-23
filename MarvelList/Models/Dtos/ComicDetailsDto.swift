@@ -1,14 +1,14 @@
 //
-//  Superhero.swift
+//  ComicDetailsDto.swift
 //  MarvelList
 //
-//  Created by George Davies on 22/10/2022.
+//  Created by George Davies on 23/10/2022.
 //
 
 import Foundation
 
-struct SuperheroDataDto: Decodable {
-    let superheroes: [SuperheroDto]
+struct ComicDetailsDataDto: Decodable {
+    let comicDetails: [ComicDetailsDto]
 
     enum DataKeys: String, CodingKey {
         case code
@@ -27,24 +27,26 @@ struct SuperheroDataDto: Decodable {
             forKey: .data
         )
 
-        self.superheroes = try resultsContainer.decode([SuperheroDto].self, forKey: .results)
+        self.comicDetails = try! resultsContainer.decode([ComicDetailsDto].self, forKey: .results)
     }
 }
 
-struct SuperheroDto: Decodable {
+struct ComicDetailsDto: Decodable {
     let id: Int
-    let name: String
+    let title: String
+    let description: String?
+    let pageCount: Int
     let thumbnail: ThumbnailDto
-    let comics: ComicsDto
 }
 
-extension SuperheroDto {
-    func toDomain() -> Superhero {
+extension ComicDetailsDto {
+    func toDomain() -> ComicDetails {
         .init(
             id: id,
-            name: name,
-            thumbnailURL: thumbnail.url,
-            comics: comics.items.map { $0.toDomain() }
+            title: title,
+            description: description ?? "",
+            pageCount: pageCount.description,
+            imageURL: thumbnail.url
         )
     }
 }

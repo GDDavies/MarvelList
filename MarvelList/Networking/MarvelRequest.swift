@@ -10,7 +10,7 @@ import Foundation
 
 enum MarvelRequest {
     case characters(offset: Int)
-    case comics
+    case comics(id: Int)
 }
 
 extension MarvelRequest: Request {
@@ -31,7 +31,7 @@ extension MarvelRequest: Request {
         case .characters:
             return "/v1/public/characters"
         case .comics:
-            return "/v1/public/characters"
+            return "/v1/public/comics"
         }
     }
 
@@ -47,8 +47,9 @@ extension MarvelRequest: Request {
         switch self {
         case let .characters(offset):
             parameters["offset"] = offset.description
-        case .comics:
-            break
+        case let .comics(id):
+            parameters["characters"] = id.description
+            parameters["limit"] = "3"
         }
         return parameters
     }

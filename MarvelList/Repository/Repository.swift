@@ -10,6 +10,7 @@ import Foundation
 
 protocol RepositoryProtocol {
     func getCharacters(offset: Int) -> AnyPublisher<[Superhero], Error>
+    func getComics(id: Int) -> AnyPublisher<[ComicDetails], Error>
 }
 
 final class Repository: RepositoryProtocol {
@@ -34,4 +35,13 @@ final class Repository: RepositoryProtocol {
             .eraseToAnyPublisher()
     }
 
+    func getComics(id: Int) -> AnyPublisher<[ComicDetails], Error> {
+        networkService
+            .request(with: MarvelRequest.comics(id: id))
+            .mapError { $0 as Error }
+            .map { (dto: ComicDetailsDataDto) -> [ComicDetails] in
+                dto.comicDetails.map { $0.toDomain() }
+            }
+            .eraseToAnyPublisher()
+    }
 }
