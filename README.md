@@ -9,3 +9,4 @@ Future improvements:
 * Add empty state UI.
 * Explore the possibility of using Async/await instead of publishers/Combine.
 * Small thing but the `HeroView` placeholder is left-aligned but should be centered.
+* Lots more unit tests.
