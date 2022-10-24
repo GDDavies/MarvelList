@@ -14,8 +14,8 @@ final class ContentViewModel: ObservableObject {
     private let limit = 20
 
     @Published var isLoading: Bool = false
-    @Published var error: ErrorViewModel?
-    @Published var superheroViewModels: [SuperheroViewModel] = []
+    @Published private(set) var error: ErrorViewModel?
+    @Published private(set) var superheroViewModels: [SuperheroViewModel] = []
     private var comics: [Int: [Comic]] = [:]
 
     private let repository: RepositoryProtocol
@@ -65,22 +65,6 @@ final class ContentViewModel: ObservableObject {
             name: viewModel.name,
             repository: repository
         )
-    }
-
-    private func comicTitles(superheroId id: Int) -> [String] {
-        guard let comics = comics[id] else { return [] }
-        return comics.compactMap { $0.name }
-    }
-
-    func getComics(id: Int) {
-        repository.getComics(id: id)
-            .receive(on: RunLoop.main)
-            .sink(receiveCompletion: { completion in
-                print(completion)
-            }, receiveValue: { dtos in
-                print(dtos)
-            })
-            .store(in: &cancellables)
     }
 }
 
