@@ -40,8 +40,8 @@ struct ContentView: View {
                 }
                 LoadingView(isLoading: $viewModel.isLoading)
             }
+            .padding([.leading, .trailing], 8)
         }
-        .padding([.leading, .trailing], 8)
         .onAppear {
             viewModel.updateSuperheroes()
         }
