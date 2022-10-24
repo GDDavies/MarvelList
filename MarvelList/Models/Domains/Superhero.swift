@@ -10,6 +10,7 @@ import Foundation
 struct Superhero {
     let id: Int
     let name: String
+    let description: String
     let thumbnailURL: URL?
     let comics: [Comic]
 }

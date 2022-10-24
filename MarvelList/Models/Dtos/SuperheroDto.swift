@@ -34,6 +34,7 @@ struct SuperheroDataDto: Decodable {
 struct SuperheroDto: Decodable {
     let id: Int
     let name: String
+    let description: String
     let thumbnail: ThumbnailDto
     let comics: ComicsDto
 }
@@ -43,6 +44,7 @@ extension SuperheroDto {
         .init(
             id: id,
             name: name,
+            description: description,
             thumbnailURL: thumbnail.url,
             comics: comics.items.map { $0.toDomain() }
         )

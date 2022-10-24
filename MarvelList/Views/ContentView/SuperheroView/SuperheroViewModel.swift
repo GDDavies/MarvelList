@@ -11,11 +11,13 @@ struct SuperheroViewModel: Identifiable {
     let id: Int
     let imageURL: URL?
     let name: String
+    let description: String
 
-    init(id: Int, imageURL: URL?, name: String) {
+    init(id: Int, imageURL: URL?, name: String, description: String) {
         self.id = id
         self.imageURL = imageURL
         self.name = name
+        self.description = description
     }
 }
 

@@ -46,7 +46,12 @@ final class ContentViewModel: ObservableObject {
             }, receiveValue: { [weak self] superheroes in
                 let viewModels = superheroes.map { [weak self] in
                     self?.comics[$0.id] = $0.comics
-                    return SuperheroViewModel(id: $0.id, imageURL: $0.thumbnailURL, name: $0.name)
+                    return SuperheroViewModel(
+                        id: $0.id,
+                        imageURL: $0.thumbnailURL,
+                        name: $0.name,
+                        description: $0.description
+                    )
                 }
                 self?.superheroViewModels.append(contentsOf: viewModels)
 

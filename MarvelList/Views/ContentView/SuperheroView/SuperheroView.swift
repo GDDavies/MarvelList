@@ -28,6 +28,11 @@ struct SuperheroView: View {
 
             Text(viewModel.name)
                 .multilineTextAlignment(.center)
+
+            if viewModel.description != "" {
+                Text(viewModel.description)
+                    .font(.caption)
+            }
         }
     }
 }
@@ -38,7 +43,8 @@ struct SuperheroView_Previews: PreviewProvider {
             viewModel: SuperheroViewModel(
                 id: 0,
                 imageURL: nil,
-                name: "Spiderman"
+                name: "Spiderman",
+                description: "Amazing"
             )
         )
     }
