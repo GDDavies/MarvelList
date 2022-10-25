@@ -9,4 +9,6 @@ Future improvements:
 * Add empty state UI.
 * Explore the possibility of using Async/await instead of publishers/Combine.
 * Small thing but the `HeroView` placeholder is left-aligned but should be centered.
-* Lots more unit tests.
+* Lots more unit tests (for example testing the pagination logic).
+* Put API keys in ENVConstants or `swift` file which is shared separately
+* Introduce an `Interactor` between the `Repository` and the `ContentViewModel`. Currently The `ContentViewModel` does too much in my opinion.
