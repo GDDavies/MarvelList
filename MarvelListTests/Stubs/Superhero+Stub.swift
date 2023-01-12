@@ -13,6 +13,7 @@ extension Superhero {
         Superhero(
             id: id,
             name: name,
+            description: "Lorem ipsum",
             thumbnailURL: nil,
             comics: [
                 Comic.sample(name: "Comic One"),

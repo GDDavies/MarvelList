@@ -178,11 +178,11 @@
 		9389AB832903C5D6005652F6 /* MarvelList */ = {
 			isa = PBXGroup;
 			children = (
+				9389AB842903C5D6005652F6 /* MarvelListApp.swift */,
+				5E18084E29053D4E00A4BE3E /* Views */,
 				9399B94F2904136500C982D4 /* Models */,
 				9399B94A2904013700C982D4 /* Networking */,
 				5E18084F29053D5D00A4BE3E /* Repository */,
-				5E18084E29053D4E00A4BE3E /* Views */,
-				9389AB842903C5D6005652F6 /* MarvelListApp.swift */,
 				9389AB882903C5D8005652F6 /* Assets.xcassets */,
 				9389AB8A2903C5D8005652F6 /* Preview Content */,
 			);

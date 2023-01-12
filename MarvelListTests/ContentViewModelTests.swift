@@ -95,11 +95,11 @@ extension ContentViewModelTests {
 
     var superheroViewModels: [SuperheroViewModel] {
         [
-            SuperheroViewModel(id: 0, imageURL: nil, name: "Captain Marvel"),
-            SuperheroViewModel(id: 1, imageURL: nil, name: "Dr Strange"),
-            SuperheroViewModel(id: 2, imageURL: nil, name: "Gambit"),
-            SuperheroViewModel(id: 3, imageURL: nil, name: "Spiderman"),
-            SuperheroViewModel(id: 4, imageURL: nil, name: "Wolverine")
+            SuperheroViewModel(id: 0, imageURL: nil, name: "Captain Marvel", description: "Lorem ipsum"),
+            SuperheroViewModel(id: 1, imageURL: nil, name: "Dr Strange", description: "Lorem ipsum"),
+            SuperheroViewModel(id: 2, imageURL: nil, name: "Gambit", description: "Lorem ipsum"),
+            SuperheroViewModel(id: 3, imageURL: nil, name: "Spiderman", description: "Lorem ipsum"),
+            SuperheroViewModel(id: 4, imageURL: nil, name: "Wolverine", description: "Lorem ipsum")
         ]
     }
 }
